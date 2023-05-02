@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjkgp00k5wr38"]
+
+[ext_resource type="Script" path="res://RedPotion.gd" id="1_i6ydd"]
+[ext_resource type="Texture2D" uid="uid://q5txulgn3bu0" path="res://assets/potion_green.png" id="2_nbvcr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ixl15"]
+radius = 4.12311
+
+[node name="GreenPotion" type="Node2D"]
+script = ExtResource("1_i6ydd")
+metadata/_edit_group_ = true
+
+[node name="GPSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_nbvcr")
+
+[node name="GPArea" type="Area2D" parent="."]
+
+[node name="GPBox" type="CollisionShape2D" parent="GPArea"]
+shape = SubResource("CircleShape2D_ixl15")
+
+[connection signal="area_entered" from="GPArea" to="." method="_on_gp_area_area_entered"]
+[connection signal="area_entered" from="GPArea" to="." method="_on_rp_area_area_entered" flags=18]
+[connection signal="area_entered" from="GPArea" to="." method="_on_coin_area_area_entered" flags=18]

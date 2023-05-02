@@ -1,0 +1,180 @@
+[gd_scene load_steps=3 format=3 uid="uid://4x8eawupvgbs"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_dxuwi"]
+[ext_resource type="FontFile" uid="uid://cikvts8xwpyq1" path="res://assets/Pixeled.ttf" id="1_ryxk1"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_dxuwi")
+
+[node name="MainMenu" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.164706, 0.129412, 0.172549, 1)
+
+[node name="Blurb" type="Label" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -332.0
+offset_top = 55.0
+offset_right = 333.0
+offset_bottom = 245.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_ryxk1")
+theme_override_font_sizes/font_size = 12
+text = "You've made it to the bottom of the dungeon to find the GEM OF POWER. All that's left is to bring the gem back up to THE PEDESTAL. Unfortunately, you left your sword at home...
+
+Good luck!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true
+
+[node name="AcceptButton" type="Button" parent="MainMenu"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -87.5
+offset_top = -150.0
+offset_right = 87.5
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_ryxk1")
+theme_override_font_sizes/font_size = 16
+text = "OK"
+
+[node name="Title" type="Label" parent="MainMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -389.0
+offset_right = 390.0
+offset_bottom = 155.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_ryxk1")
+theme_override_font_sizes/font_size = 36
+text = "Deliver the Gem!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="PlayButton" type="Button" parent="MainMenu"]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -87.5
+offset_top = -150.0
+offset_right = 87.5
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_ryxk1")
+theme_override_font_sizes/font_size = 16
+text = "PLAY"
+
+[node name="GameOver" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.164706, 0.129412, 0.172549, 1)
+
+[node name="Message" type="Label" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -389.0
+offset_right = 390.0
+offset_bottom = 155.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_ryxk1")
+theme_override_font_sizes/font_size = 36
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="PlayButton" type="Button" parent="GameOver"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -87.5
+offset_top = -150.0
+offset_right = 87.5
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_ryxk1")
+theme_override_font_sizes/font_size = 16
+text = "TRY AGAIN"
+
+[node name="GameWon" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.164706, 0.129412, 0.172549, 1)
+
+[node name="Message" type="Label" parent="GameWon"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -389.0
+offset_right = 390.0
+offset_bottom = 155.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_ryxk1")
+theme_override_font_sizes/font_size = 36
+text = "YOU DID IT!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="PlayButton" type="Button" parent="GameWon"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -87.5
+offset_top = -150.0
+offset_right = 87.5
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_ryxk1")
+theme_override_font_sizes/font_size = 16
+text = "PLAY AGAIN"
+
+[connection signal="button_down" from="MainMenu/AcceptButton" to="." method="_on_accept_button_button_down"]
+[connection signal="button_down" from="MainMenu/PlayButton" to="." method="_on_play_button_button_down"]
+[connection signal="button_down" from="GameOver/PlayButton" to="." method="_on_play_button_button_down"]
+[connection signal="button_down" from="GameWon/PlayButton" to="." method="_on_play_button_button_down"]

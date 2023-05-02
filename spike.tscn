@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://bo6faxffm3s1a"]
+
+[ext_resource type="Texture2D" uid="uid://cyjn3065l45hg" path="res://assets/spike.png" id="1_pv434"]
+[ext_resource type="Script" path="res://spike.gd" id="1_vx3a6"]
+[ext_resource type="Texture2D" uid="uid://ofe80x1tnj22" path="res://assets/spike_blood.png" id="2_fe6pg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kcmqs"]
+radius = 12.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v2fbc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_fe6pg")
+}],
+"loop": true,
+"name": &"blood",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pv434")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Spike" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_vx3a6")
+metadata/_edit_group_ = true
+
+[node name="SpikeArea" type="Area2D" parent="."]
+collision_layer = 64
+
+[node name="SpikeBox" type="CollisionShape2D" parent="SpikeArea"]
+z_index = 1
+shape = SubResource("CircleShape2D_kcmqs")
+
+[node name="SpikeTimer" type="Timer" parent="."]
+
+[node name="SpikeSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_v2fbc")
+
+[connection signal="area_entered" from="SpikeArea" to="." method="_on_spike_area_area_entered"]
+[connection signal="area_exited" from="SpikeArea" to="." method="_on_spike_area_area_exited"]
+[connection signal="timeout" from="SpikeTimer" to="." method="_on_spike_timer_timeout"]

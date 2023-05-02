@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://0lajv6xebpfc"]
+
+[ext_resource type="Script" path="res://BluePotion.gd" id="1_n0t8t"]
+[ext_resource type="Texture2D" uid="uid://c4tfft8ain1of" path="res://assets/potion_blue.png" id="2_dfpk8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ixl15"]
+radius = 4.12311
+
+[node name="BluePotion" type="Node2D"]
+script = ExtResource("1_n0t8t")
+metadata/_edit_group_ = true
+
+[node name="BPSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_dfpk8")
+
+[node name="BPArea" type="Area2D" parent="."]
+
+[node name="BPBox" type="CollisionShape2D" parent="BPArea"]
+shape = SubResource("CircleShape2D_ixl15")
+
+[connection signal="area_entered" from="BPArea" to="." method="_on_bp_area_area_entered"]
+[connection signal="area_entered" from="BPArea" to="." method="_on_rp_area_area_entered" flags=18]
+[connection signal="area_entered" from="BPArea" to="." method="_on_coin_area_area_entered" flags=18]

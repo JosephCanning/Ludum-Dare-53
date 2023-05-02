@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://de6vblw2jyg8n"]
+
+[ext_resource type="Texture2D" uid="uid://c7bnaghqflf67" path="res://assets/skeleton.png" id="1_8pxif"]
+[ext_resource type="Script" path="res://orb_skeleton.gd" id="1_tew8r"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kq71q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8pxif")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_egedy"]
+size = Vector2(12, 24)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_olyel"]
+radius = 414.005
+
+[node name="OrbSkeleton" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 9
+script = ExtResource("1_tew8r")
+metadata/_edit_group_ = true
+
+[node name="OrbSkeletonSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kq71q")
+animation = &"walk"
+
+[node name="OrbSkeletonBox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_egedy")
+
+[node name="OrbSkeletonRange" type="Area2D" parent="."]
+z_index = 1
+collision_layer = 16
+
+[node name="OrbSkeletonRangeBox" type="CollisionShape2D" parent="OrbSkeletonRange"]
+shape = SubResource("CircleShape2D_olyel")
+
+[node name="SkeletonOrbTimer" type="Timer" parent="."]
+wait_time = 0.35
+
+[node name="OrbSkeletonVision" type="RayCast2D" parent="."]
+collision_mask = 3
+
+[connection signal="body_entered" from="OrbSkeletonRange" to="." method="_on_orb_skeleton_range_body_entered"]
+[connection signal="body_exited" from="OrbSkeletonRange" to="." method="_on_orb_skeleton_range_body_exited"]
+[connection signal="timeout" from="SkeletonOrbTimer" to="." method="_on_skeleton_orb_timer_timeout"]

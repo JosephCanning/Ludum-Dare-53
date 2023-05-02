@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c82jmj7l3ht7e"]
+
+[ext_resource type="Script" path="res://RedPotion.gd" id="1_4fbpt"]
+[ext_resource type="Texture2D" uid="uid://bxjj461clwalf" path="res://assets/potion_red.png" id="2_y0xu0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ixl15"]
+radius = 4.12311
+
+[node name="RedPotion" type="Node2D"]
+script = ExtResource("1_4fbpt")
+metadata/_edit_group_ = true
+
+[node name="RPSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_y0xu0")
+
+[node name="RPArea" type="Area2D" parent="."]
+
+[node name="RPBox" type="CollisionShape2D" parent="RPArea"]
+shape = SubResource("CircleShape2D_ixl15")
+
+[connection signal="area_entered" from="RPArea" to="." method="_on_rp_area_area_entered"]
+[connection signal="area_entered" from="RPArea" to="." method="_on_coin_area_area_entered" flags=18]

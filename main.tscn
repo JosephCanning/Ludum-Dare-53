@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhd6fgnd78rre"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_gtso3"]
+[ext_resource type="FontFile" uid="uid://cikvts8xwpyq1" path="res://assets/Pixeled.ttf" id="3_g5fm0"]
+[ext_resource type="Texture2D" uid="uid://bky5ppt4uxuvf" path="res://assets/heart_ui_full.png" id="6_q7jni"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_gtso3")
+
+[node name="UICanvas" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="HBoxContainer" parent="UICanvas"]
+offset_left = 1.0
+offset_top = -2.0
+offset_right = 374.0
+offset_bottom = 44.0
+theme_override_constants/separation = 25
+metadata/_edit_group_ = true
+
+[node name="HeartsCont" type="HBoxContainer" parent="UICanvas/HUD"]
+layout_mode = 2
+theme_override_constants/separation = -10
+
+[node name="Life 1" type="TextureRect" parent="UICanvas/HUD/HeartsCont"]
+layout_mode = 2
+texture = ExtResource("6_q7jni")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Life 2" type="TextureRect" parent="UICanvas/HUD/HeartsCont"]
+layout_mode = 2
+texture = ExtResource("6_q7jni")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Life 3" type="TextureRect" parent="UICanvas/HUD/HeartsCont"]
+layout_mode = 2
+texture = ExtResource("6_q7jni")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="StatusCont" type="HBoxContainer" parent="UICanvas/HUD"]
+layout_mode = 2
+theme_override_constants/separation = 23
+
+[node name="POW" type="Label" parent="UICanvas/HUD/StatusCont"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_g5fm0")
+theme_override_font_sizes/font_size = 10
+text = "POW X"
+
+[node name="SPD" type="Label" parent="UICanvas/HUD/StatusCont"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_g5fm0")
+theme_override_font_sizes/font_size = 10
+text = "SPD X"
+
+[node name="ACC" type="Label" parent="UICanvas/HUD/StatusCont"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_g5fm0")
+theme_override_font_sizes/font_size = 10
+text = "ACC X"
+
+[node name="Score" type="Label" parent="UICanvas"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
+offset_right = -34.0
+offset_bottom = 31.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("3_g5fm0")
+theme_override_font_sizes/font_size = 10
+text = "SCORE X"

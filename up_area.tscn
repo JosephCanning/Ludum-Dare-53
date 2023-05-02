@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://8sh3ra8u7c71"]
+
+[ext_resource type="Texture2D" uid="uid://c7pkhbq0bge8r" path="res://assets/upstairs.png" id="1_ao42m"]
+[ext_resource type="Script" path="res://up_area.gd" id="1_oy2i4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x371i"]
+size = Vector2(24, 24)
+
+[node name="UpStair" type="Node2D"]
+script = ExtResource("1_oy2i4")
+
+[node name="UpArea" type="Area2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="UpAreaBox" type="CollisionShape2D" parent="UpArea"]
+shape = SubResource("RectangleShape2D_x371i")
+
+[node name="UpSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_ao42m")
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 1.5
+
+[connection signal="area_entered" from="UpArea" to="." method="_on_up_area_area_entered"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_timer_timeout"]

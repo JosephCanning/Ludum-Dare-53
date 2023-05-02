@@ -1,0 +1,166 @@
+[gd_scene load_steps=19 format=3 uid="uid://biloxde24qxm3"]
+
+[ext_resource type="Texture2D" uid="uid://dyfs45mg5tn1f" path="res://assets/player_down.png" id="1_7u8sl"]
+[ext_resource type="Script" path="res://player.gd" id="1_umrh8"]
+[ext_resource type="Texture2D" uid="uid://p41npqmshxex" path="res://assets/player_down_attack.png" id="2_4iwwr"]
+[ext_resource type="Texture2D" uid="uid://dh5jx7moyp43f" path="res://assets/player_down_gem.png" id="3_qljie"]
+[ext_resource type="Texture2D" uid="uid://c42ya838nwl1e" path="res://assets/player_left.png" id="4_ijj8e"]
+[ext_resource type="Texture2D" uid="uid://dfjyons7qe2hp" path="res://assets/player_left_attack.png" id="5_p230h"]
+[ext_resource type="Texture2D" uid="uid://cwwx4wbuwrm6y" path="res://assets/player_left_gem.png" id="6_2pikl"]
+[ext_resource type="Texture2D" uid="uid://cgleg54et7g5r" path="res://assets/player_right.png" id="7_hunp2"]
+[ext_resource type="Texture2D" uid="uid://dqupw7gac4st6" path="res://assets/player_right_attack.png" id="8_u0qal"]
+[ext_resource type="Texture2D" uid="uid://r0pf8nv584n8" path="res://assets/player_right_gem.png" id="9_2j2gv"]
+[ext_resource type="Texture2D" uid="uid://1u12yiod24mf" path="res://assets/player_up.png" id="10_wh3px"]
+[ext_resource type="Texture2D" uid="uid://28f5lcmbgs5k" path="res://assets/player_up_attack.png" id="11_rsabh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s0vvo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7u8sl")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4iwwr")
+}],
+"loop": true,
+"name": &"down_attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qljie")
+}],
+"loop": true,
+"name": &"down_gem",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ijj8e")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_p230h")
+}],
+"loop": true,
+"name": &"left_attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_2pikl")
+}],
+"loop": true,
+"name": &"left_gem",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_hunp2")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_u0qal")
+}],
+"loop": true,
+"name": &"right_attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_2j2gv")
+}],
+"loop": true,
+"name": &"right_gem",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_wh3px")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_rsabh")
+}],
+"loop": true,
+"name": &"up_attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_wh3px")
+}],
+"loop": true,
+"name": &"up_gem",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_822jv"]
+size = Vector2(16, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mqaq3"]
+size = Vector2(18, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dykg8"]
+size = Vector2(12, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pxngd"]
+size = Vector2(12, 24)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6onds"]
+radius = 7.0
+height = 26.0
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 1
+collision_mask = 55
+script = ExtResource("1_umrh8")
+metadata/_edit_group_ = true
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s0vvo")
+animation = &"up"
+
+[node name="UpBox" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_822jv")
+
+[node name="DownBox" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_mqaq3")
+
+[node name="LeftBox" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(4, 0)
+shape = SubResource("RectangleShape2D_dykg8")
+
+[node name="RightBox" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_pxngd")
+
+[node name="PlayerDetect" type="Area2D" parent="."]
+z_index = 2
+collision_mask = 65
+
+[node name="PlayerDetectRange" type="CollisionShape2D" parent="PlayerDetect"]
+shape = SubResource("CapsuleShape2D_6onds")
